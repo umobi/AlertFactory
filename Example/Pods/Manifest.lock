@@ -1,0 +1,16 @@
+PODS:
+  - AlertFactory (0.1.0)
+
+DEPENDENCIES:
+  - AlertFactory (from `../`)
+
+EXTERNAL SOURCES:
+  AlertFactory:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AlertFactory: 1f8693dc28b7f6012310e11b69ddec23c9dea63e
+
+PODFILE CHECKSUM: 80d0827622d1eb8cd359ccd4e468be0c53974190
+
+COCOAPODS: 1.7.5
