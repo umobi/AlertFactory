@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		280111164F94C1B7B34D795EB06B6962 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		0C51DB5D5BE7FBB3B3BCC49EE838417D /* AlertFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67458CBB8E36A52BAE30A5AF43F0CC2D /* AlertFactoryType.swift */; };
+		148FBBA17051B710D8FACFB1F74D2DC2 /* AlertFactory-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CDB582C6942B696C5AB3DBC99439E32 /* AlertFactory-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D62E03CD5E7FC2D4EA7A275D49AF455 /* AlertFactory-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D5C1D8C979060E526B3921C77311D0 /* AlertFactory-dummy.m */; };
+		27915E42F2505F23FF80F1D49C3AD965 /* AlertFactory+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9D44F835148ADB21E9B69E91C5B66 /* AlertFactory+UIAlertController.swift */; };
+		280111164F94C1B7B34D795EB06B6962 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		2AEDD97FE2B7C4C4EFBB382D6C3A1357 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
 		355AAB12188C08054F02346CF381F68F /* Pods-AlertFactory_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 723C89B41F9C485B084AC98DE1673375 /* Pods-AlertFactory_Example-dummy.m */; };
-		71D281D5A0A570563E85B72330CF903C /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D800ADD42C025A224B4B62CBA759C68 /* ReplaceMe.swift */; };
+		6E3BE3CA6F8CD5A773D3C41DB52270F1 /* AlertFactoryPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD484206A5ED6BA151E189FB5F06722 /* AlertFactoryPayload.swift */; };
 		76353576B7E44C985D2299092D8AF3E1 /* Pods-AlertFactory_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 42242102DFABFE7662E79D0A9868A1C4 /* Pods-AlertFactory_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84477E6F98FC6638CDF6202E47D29242 /* AlertFactory-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 00E238A1AAF029F918B0F31AB341F4B1 /* AlertFactory-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0614AC49FCBA510DBB5FADD22F0AD64 /* AlertFactoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74F5183D466AC4C9A34E7826A68691 /* AlertFactoryError.swift */; };
 		A32F05A1459DCC0AE53E31ABE6B10098 /* Pods-AlertFactory_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AECBB12429EDF56D69CC64DF48EA5E /* Pods-AlertFactory_Tests-dummy.m */; };
-		B73F65522C650E5E2BC2CA2F36C0650A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		CD66B8057578F43B12141F83355AECB2 /* Pods-AlertFactory_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D8150A4AE700AD314B6761F337222573 /* Pods-AlertFactory_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F27D8920AFB607CC94B005CAB32925F3 /* AlertFactory-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9CA6A5ABDB4C6AC4035A8038D85B5B /* AlertFactory-dummy.m */; };
-		F69F737C2FB72E96A4A46925302E7E19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		DC4079BE46D77C4CFDD6D98CD99107CD /* AlertFactoryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5EB7BCDB52F25D41C469CD2251F96 /* AlertFactoryField.swift */; };
+		DD686D9EBAFF6AD704C18D48512B4C2B /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D9C830EECB557111C34843E57D2A16 /* AlertFactory.swift */; };
+		EE4CF54DAED0B54F308DF5FE9E86FAAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312B988EF117AE4DE76A268D970131FE /* UIKit.framework */; };
+		F6766D0ECC1268D3FAF88B7613748D54 /* AlertFactoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138D9E0984629CBB6051FFB466690651 /* AlertFactoryButton.swift */; };
+		F69F737C2FB72E96A4A46925302E7E19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,46 +44,54 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E238A1AAF029F918B0F31AB341F4B1 /* AlertFactory-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlertFactory-umbrella.h"; sourceTree = "<group>"; };
-		05D442481B6546554BFEC5BEC54C1DE9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1CB02FE352D35F69541161F4E7DB7A4B /* AlertFactory-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AlertFactory-Info.plist"; sourceTree = "<group>"; };
+		09FBD5A3C13DF3CE443CF7E7565BDB39 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		138D9E0984629CBB6051FFB466690651 /* AlertFactoryButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryButton.swift; path = AlertFactory/Classes/AlertFactoryButton.swift; sourceTree = "<group>"; };
 		1FAE9FA905914258C6D70DC7884A0E68 /* Pods-AlertFactory_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertFactory_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1FD484206A5ED6BA151E189FB5F06722 /* AlertFactoryPayload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryPayload.swift; path = AlertFactory/Classes/AlertFactoryPayload.swift; sourceTree = "<group>"; };
+		312B988EF117AE4DE76A268D970131FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		3718B9D863A7ED08968CFC65BD0A9BFB /* AlertFactory-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AlertFactory-Info.plist"; sourceTree = "<group>"; };
 		38AF9FBDD3DB6BE6A3E1F04B49AFF2EE /* Pods-AlertFactory_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Example.release.xcconfig"; sourceTree = "<group>"; };
+		3C67B5BC15CBC71464C8E2FA8F4834B7 /* AlertFactory.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AlertFactory.modulemap; sourceTree = "<group>"; };
 		3D827A061246E77CD8C126E0CDA80F91 /* Pods-AlertFactory_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertFactory_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		42242102DFABFE7662E79D0A9868A1C4 /* Pods-AlertFactory_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlertFactory_Example-umbrella.h"; sourceTree = "<group>"; };
-		50D50095DC6B39DE61C70A5CF787B90E /* AlertFactory.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = AlertFactory.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		4CDB582C6942B696C5AB3DBC99439E32 /* AlertFactory-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlertFactory-umbrella.h"; sourceTree = "<group>"; };
 		51C073853FBDDD214DB3D158C8C20AD7 /* Pods-AlertFactory_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5C1EBB77D64A924592C4EADE0FDC59A3 /* AlertFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlertFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C1EBB77D64A924592C4EADE0FDC59A3 /* AlertFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AlertFactory.framework; path = AlertFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E74F5183D466AC4C9A34E7826A68691 /* AlertFactoryError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryError.swift; path = AlertFactory/Classes/AlertFactoryError.swift; sourceTree = "<group>"; };
+		5FA836FC5A4B02105D255999388BA144 /* AlertFactory.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlertFactory.xcconfig; sourceTree = "<group>"; };
 		669FFF187C2D30F69F36ECC1FA72D562 /* Pods-AlertFactory_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlertFactory_Example-frameworks.sh"; sourceTree = "<group>"; };
+		67458CBB8E36A52BAE30A5AF43F0CC2D /* AlertFactoryType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryType.swift; path = AlertFactory/Classes/AlertFactoryType.swift; sourceTree = "<group>"; };
 		723C89B41F9C485B084AC98DE1673375 /* Pods-AlertFactory_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlertFactory_Example-dummy.m"; sourceTree = "<group>"; };
-		7D800ADD42C025A224B4B62CBA759C68 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = AlertFactory/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		8832A232B548CF1ADEFCC879916DE2E3 /* Pods-AlertFactory_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlertFactory_Tests.modulemap"; sourceTree = "<group>"; };
-		8E1F91F918B35110A8E731100989134B /* AlertFactory.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AlertFactory.modulemap; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		89A5EB7BCDB52F25D41C469CD2251F96 /* AlertFactoryField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryField.swift; path = AlertFactory/Classes/AlertFactoryField.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A1F2A196D7D9D145E90B3DC4F5B91FCE /* Pods-AlertFactory_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		AF2147DD4AB1084CE698CBE2B044945A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A2ED2119B7B64420C5DFD042A0C7F61D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		A36B8C6F6496C985A5542D6074C92DF0 /* AlertFactory-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlertFactory-prefix.pch"; sourceTree = "<group>"; };
+		B9D9C830EECB557111C34843E57D2A16 /* AlertFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactory.swift; path = AlertFactory/Classes/AlertFactory.swift; sourceTree = "<group>"; };
 		BB2F8011B22B20A0AEFEFDE6F679A0AE /* Pods-AlertFactory_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BB9F17F2F4F375622ABFBBA67904531E /* Pods-AlertFactory_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertFactory_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		BCA3A0C2CC7705CEB59ECA48992964D1 /* Pods_AlertFactory_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertFactory_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCA3A0C2CC7705CEB59ECA48992964D1 /* Pods_AlertFactory_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlertFactory_Example.framework; path = "Pods-AlertFactory_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0D5C1D8C979060E526B3921C77311D0 /* AlertFactory-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlertFactory-dummy.m"; sourceTree = "<group>"; };
 		C2E7BED820481F14EDABB662EDC729BD /* Pods-AlertFactory_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertFactory_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CC3452FDEE15DD158D866A92D7F622C8 /* AlertFactory.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AlertFactory.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D8150A4AE700AD314B6761F337222573 /* Pods-AlertFactory_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlertFactory_Tests-umbrella.h"; sourceTree = "<group>"; };
-		DC9CA6A5ABDB4C6AC4035A8038D85B5B /* AlertFactory-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlertFactory-dummy.m"; sourceTree = "<group>"; };
 		E078E900C7FC2292458C80F0C99533CF /* Pods-AlertFactory_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertFactory_Tests-Info.plist"; sourceTree = "<group>"; };
 		E13C8FD85ACA8AEB51301DFE93C9B13F /* Pods-AlertFactory_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertFactory_Example-Info.plist"; sourceTree = "<group>"; };
-		E8A4B5D4C8C65C933BF7A063707C8988 /* Pods_AlertFactory_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertFactory_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4B0C94DEE45658E7900898D9F6D985A /* AlertFactory-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlertFactory-prefix.pch"; sourceTree = "<group>"; };
+		E8A4B5D4C8C65C933BF7A063707C8988 /* Pods_AlertFactory_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlertFactory_Tests.framework; path = "Pods-AlertFactory_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEC9D44F835148ADB21E9B69E91C5B66 /* AlertFactory+UIAlertController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AlertFactory+UIAlertController.swift"; path = "AlertFactory/Classes/AlertFactory+UIAlertController.swift"; sourceTree = "<group>"; };
 		F8AECBB12429EDF56D69CC64DF48EA5E /* Pods-AlertFactory_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlertFactory_Tests-dummy.m"; sourceTree = "<group>"; };
-		FD8FBA41DF4555BAE7CBA3E7E2350B48 /* AlertFactory.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlertFactory.xcconfig; sourceTree = "<group>"; };
 		FFC117CA0279955BEB4FC2ABFDA5859E /* Pods-AlertFactory_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlertFactory_Example.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8BE4A07B7CD47D0D4D3CBFC5E30ABC4E /* Frameworks */ = {
+		597654F55F837D85E0EFF44595C896EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B73F65522C650E5E2BC2CA2F36C0650A /* Foundation.framework in Frameworks */,
+				2AEDD97FE2B7C4C4EFBB382D6C3A1357 /* Foundation.framework in Frameworks */,
+				EE4CF54DAED0B54F308DF5FE9E86FAAD /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,18 +123,26 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		111EE101B822F069BDABD3023FB64833 /* Support Files */ = {
+		12B3471338420E8C5F63681E1B3C3DF6 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				8E1F91F918B35110A8E731100989134B /* AlertFactory.modulemap */,
-				FD8FBA41DF4555BAE7CBA3E7E2350B48 /* AlertFactory.xcconfig */,
-				DC9CA6A5ABDB4C6AC4035A8038D85B5B /* AlertFactory-dummy.m */,
-				1CB02FE352D35F69541161F4E7DB7A4B /* AlertFactory-Info.plist */,
-				F4B0C94DEE45658E7900898D9F6D985A /* AlertFactory-prefix.pch */,
-				00E238A1AAF029F918B0F31AB341F4B1 /* AlertFactory-umbrella.h */,
+				3C67B5BC15CBC71464C8E2FA8F4834B7 /* AlertFactory.modulemap */,
+				5FA836FC5A4B02105D255999388BA144 /* AlertFactory.xcconfig */,
+				C0D5C1D8C979060E526B3921C77311D0 /* AlertFactory-dummy.m */,
+				3718B9D863A7ED08968CFC65BD0A9BFB /* AlertFactory-Info.plist */,
+				A36B8C6F6496C985A5542D6074C92DF0 /* AlertFactory-prefix.pch */,
+				4CDB582C6942B696C5AB3DBC99439E32 /* AlertFactory-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/AlertFactory";
+			sourceTree = "<group>";
+		};
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2983683FD097A93297E2F5D4E382B36 /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3C5081A56843685E9624735BF51FA280 /* Products */ = {
@@ -149,15 +172,14 @@
 			path = "Target Support Files/Pods-AlertFactory_Example";
 			sourceTree = "<group>";
 		};
-		52AA5EE9DC0752814500F6822D021E81 /* AlertFactory */ = {
+		5F7F67A069749DEE74A25AE1A03F7FB6 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				7D800ADD42C025A224B4B62CBA759C68 /* ReplaceMe.swift */,
-				E9E50E2F262B83ECF34F78E4B96D5C3B /* Pod */,
-				111EE101B822F069BDABD3023FB64833 /* Support Files */,
+				CC3452FDEE15DD158D866A92D7F622C8 /* AlertFactory.podspec */,
+				A2ED2119B7B64420C5DFD042A0C7F61D /* LICENSE */,
+				09FBD5A3C13DF3CE443CF7E7565BDB39 /* README.md */,
 			);
-			name = AlertFactory;
-			path = ../..;
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		BE2F36ECED82F9B6BA6C082FD3F283CB /* Pods-AlertFactory_Tests */ = {
@@ -176,49 +198,49 @@
 			path = "Target Support Files/Pods-AlertFactory_Tests";
 			sourceTree = "<group>";
 		};
-		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+		CEA0E66B3BA47CECCB491E56071F78B9 /* AlertFactory */ = {
 			isa = PBXGroup;
 			children = (
-				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+				B9D9C830EECB557111C34843E57D2A16 /* AlertFactory.swift */,
+				EEC9D44F835148ADB21E9B69E91C5B66 /* AlertFactory+UIAlertController.swift */,
+				138D9E0984629CBB6051FFB466690651 /* AlertFactoryButton.swift */,
+				5E74F5183D466AC4C9A34E7826A68691 /* AlertFactoryError.swift */,
+				89A5EB7BCDB52F25D41C469CD2251F96 /* AlertFactoryField.swift */,
+				1FD484206A5ED6BA151E189FB5F06722 /* AlertFactoryPayload.swift */,
+				67458CBB8E36A52BAE30A5AF43F0CC2D /* AlertFactoryType.swift */,
+				5F7F67A069749DEE74A25AE1A03F7FB6 /* Pod */,
+				12B3471338420E8C5F63681E1B3C3DF6 /* Support Files */,
 			);
-			name = iOS;
+			name = AlertFactory;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				E23DD6B71D892A558DF87954904FDDD4 /* Development Pods */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				ED39B3500B8059E50DBC0E2DDA2FAB6F /* Development Pods */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
 				3C5081A56843685E9624735BF51FA280 /* Products */,
 				0945E53E582E4C0E45BDAC270A5DEFED /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		E2983683FD097A93297E2F5D4E382B36 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+				436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */,
+				312B988EF117AE4DE76A268D970131FE /* UIKit.framework */,
 			);
-			name = Frameworks;
+			name = iOS;
 			sourceTree = "<group>";
 		};
-		E23DD6B71D892A558DF87954904FDDD4 /* Development Pods */ = {
+		ED39B3500B8059E50DBC0E2DDA2FAB6F /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				52AA5EE9DC0752814500F6822D021E81 /* AlertFactory */,
+				CEA0E66B3BA47CECCB491E56071F78B9 /* AlertFactory */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		E9E50E2F262B83ECF34F78E4B96D5C3B /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				50D50095DC6B39DE61C70A5CF787B90E /* AlertFactory.podspec */,
-				AF2147DD4AB1084CE698CBE2B044945A /* LICENSE */,
-				05D442481B6546554BFEC5BEC54C1DE9 /* README.md */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,11 +254,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53DAF5E51FEEF67EB395F90792C3162E /* Headers */ = {
+		102BBA18B9A7C518FBC4C404AB9A9EFA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84477E6F98FC6638CDF6202E47D29242 /* AlertFactory-umbrella.h in Headers */,
+				148FBBA17051B710D8FACFB1F74D2DC2 /* AlertFactory-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,12 +294,12 @@
 		};
 		CEAB8DC5FB95662077E57C123BFE838C /* AlertFactory */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7AA3FFF40CDE5010A9EFCAC68932BBF4 /* Build configuration list for PBXNativeTarget "AlertFactory" */;
+			buildConfigurationList = 4DEAD56CE6404E94B313DDA7E3817101 /* Build configuration list for PBXNativeTarget "AlertFactory" */;
 			buildPhases = (
-				53DAF5E51FEEF67EB395F90792C3162E /* Headers */,
-				B5F0A74733B86622280BFA510DAB8409 /* Sources */,
-				8BE4A07B7CD47D0D4D3CBFC5E30ABC4E /* Frameworks */,
-				689875E4FF5A62209E93B5E3BA409140 /* Resources */,
+				102BBA18B9A7C518FBC4C404AB9A9EFA /* Headers */,
+				AF1798A8908852F61F0D33843837D133 /* Sources */,
+				597654F55F837D85E0EFF44595C896EC /* Frameworks */,
+				91D85EC363736AB0DB9BBC4102B55D43 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -315,11 +337,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
-				TargetAttributes = {
-					CEAB8DC5FB95662077E57C123BFE838C = {
-						LastSwiftMigration = 1030;
-					};
-				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -341,14 +358,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		689875E4FF5A62209E93B5E3BA409140 /* Resources */ = {
+		722FD4AE120FD87D0FDB17693280E5FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		722FD4AE120FD87D0FDB17693280E5FE /* Resources */ = {
+		91D85EC363736AB0DB9BBC4102B55D43 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -373,12 +390,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5F0A74733B86622280BFA510DAB8409 /* Sources */ = {
+		AF1798A8908852F61F0D33843837D133 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F27D8920AFB607CC94B005CAB32925F3 /* AlertFactory-dummy.m in Sources */,
-				71D281D5A0A570563E85B72330CF903C /* ReplaceMe.swift in Sources */,
+				27915E42F2505F23FF80F1D49C3AD965 /* AlertFactory+UIAlertController.swift in Sources */,
+				1D62E03CD5E7FC2D4EA7A275D49AF455 /* AlertFactory-dummy.m in Sources */,
+				DD686D9EBAFF6AD704C18D48512B4C2B /* AlertFactory.swift in Sources */,
+				F6766D0ECC1268D3FAF88B7613748D54 /* AlertFactoryButton.swift in Sources */,
+				A0614AC49FCBA510DBB5FADD22F0AD64 /* AlertFactoryError.swift in Sources */,
+				DC4079BE46D77C4CFDD6D98CD99107CD /* AlertFactoryField.swift in Sources */,
+				6E3BE3CA6F8CD5A773D3C41DB52270F1 /* AlertFactoryPayload.swift in Sources */,
+				0C51DB5D5BE7FBB3B3BCC49EE838417D /* AlertFactoryType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,37 +431,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		71B87313522637BE5D5AE6E501E9DE16 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD8FBA41DF4555BAE7CBA3E7E2350B48 /* AlertFactory.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AlertFactory/AlertFactory-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AlertFactory/AlertFactory-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AlertFactory/AlertFactory.modulemap";
-				PRODUCT_MODULE_NAME = AlertFactory;
-				PRODUCT_NAME = AlertFactory;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		87A0527332528C10CE2A16D848DFACA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1F2A196D7D9D145E90B3DC4F5B91FCE /* Pods-AlertFactory_Example.debug.xcconfig */;
@@ -505,6 +497,37 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		8D5DCD8817C74ABBFB9936D45B70956D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FA836FC5A4B02105D255999388BA144 /* AlertFactory.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AlertFactory/AlertFactory-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AlertFactory/AlertFactory-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AlertFactory/AlertFactory.modulemap";
+				PRODUCT_MODULE_NAME = AlertFactory;
+				PRODUCT_NAME = AlertFactory;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		96282DD6EE056FC3F47B9FA41F7C22C6 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -626,7 +649,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -696,9 +720,9 @@
 			};
 			name = Debug;
 		};
-		BCBB1352D039229B923F60F4FAFD5FBA /* Release */ = {
+		FEF585BE06814DEFD3254709367C9D26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD8FBA41DF4555BAE7CBA3E7E2350B48 /* AlertFactory.xcconfig */;
+			baseConfigurationReference = 5FA836FC5A4B02105D255999388BA144 /* AlertFactory.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -758,11 +782,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7AA3FFF40CDE5010A9EFCAC68932BBF4 /* Build configuration list for PBXNativeTarget "AlertFactory" */ = {
+		4DEAD56CE6404E94B313DDA7E3817101 /* Build configuration list for PBXNativeTarget "AlertFactory" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				71B87313522637BE5D5AE6E501E9DE16 /* Debug */,
-				BCBB1352D039229B923F60F4FAFD5FBA /* Release */,
+				8D5DCD8817C74ABBFB9936D45B70956D /* Debug */,
+				FEF585BE06814DEFD3254709367C9D26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

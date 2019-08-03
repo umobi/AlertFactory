@@ -1,5 +1,5 @@
 PODS:
-  - AlertFactory (0.1.0)
+  - AlertFactory (1.0)
 
 DEPENDENCIES:
   - AlertFactory (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AlertFactory: 1f8693dc28b7f6012310e11b69ddec23c9dea63e
+  AlertFactory: 002c548a201e593c8efe26fae8edc62983e4d263
 
 PODFILE CHECKSUM: 80d0827622d1eb8cd359ccd4e468be0c53974190
 
