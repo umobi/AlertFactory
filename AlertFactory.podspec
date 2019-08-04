@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 AlertFactory does everything you need to make more easy using any AlertController. With this, you can construct all alerts without nedding to call defaults methods that make more difficult to create an alert.
                        DESC
 
-  s.homepage         = 'https://github.com/brennobemoura/AlertFactory'
+  s.homepage         = 'https://github.com/umobi/AlertFactory'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'brennoumobi' => 'brenno@umobi.com.br' }
-  s.source           = { :git => 'https://github.com/brennobemoura/AlertFactory.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/umobi/AlertFactory.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.swift_version = '5.0'
