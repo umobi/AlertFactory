@@ -20,7 +20,7 @@ it, simply add the following line to your Podfile:
 pod 'AlertFactory'
 ```
 
-###Definitions
+### Definitions
 
 ----
 
@@ -301,4 +301,4 @@ brennoumobi, brenno@umobi.com.br
 
 AlertFactory is available under the MIT license. See the LICENSE file for more info.
 
-###End
+### End
