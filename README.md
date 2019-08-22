@@ -32,8 +32,8 @@ The library already has implemented the extension for UIAlertController, so you 
 The methods to create the alert are:
 
 - .init(viewController: **UIViewController?**)
-- .with(title: String)
-- .with(text: String, at index: Int = 0)
+- .with(title: Title)
+- .with(text: Text)
 - .with(image: UIImage)
 - .otherButton(title: String, onTap: (() -> Void)?=nil)
 - .cancelButton(title: String, onTap: (() -> Void)?=nil)
