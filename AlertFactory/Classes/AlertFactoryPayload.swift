@@ -9,11 +9,11 @@
 import Foundation
 
 public protocol AlertFactoryPayloadType {
-    associatedtype TitleType
-    associatedtype TextType
+    associatedtype Title
+    associatedtype Text
     
-    var title: TitleType? { get set }
-    var text: TextType { get set }
+    var title: Title? { get set }
+    var text: Text? { get set }
     var cancelButton: AlertFactoryButton? { get set }
     var destructiveButton: AlertFactoryButton? { get set }
     var otherButtons: [AlertFactoryButton] { get set }

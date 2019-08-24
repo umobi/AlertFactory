@@ -15,7 +15,7 @@ extension UIAlertController: AlertFactoryType {
     }
     
     public func with(text: String) -> Self {
-        return .init(title: self.title, message: (self.message ?? "") + text, preferredStyle: self.preferredStyle)
+        return .init(title: self.title, message: text, preferredStyle: self.preferredStyle)
     }
     
     public func with(preferredStyle: UIAlertController.Style) -> Self {

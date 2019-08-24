@@ -34,6 +34,7 @@ The methods to create the alert are:
 - .init(viewController: **UIViewController?**)
 - .with(title: Title)
 - .with(text: Text)
+- .append(text: Text.Element) where Text == Array
 - .with(image: UIImage)
 - .otherButton(title: String, onTap: (() -> Void)?=nil)
 - .cancelButton(title: String, onTap: (() -> Void)?=nil)
@@ -53,7 +54,9 @@ The append() method should be use to discard the AlertFactory self return
 The AlertFactoryType is a protocol that helps AlertFactory to delivery the payload that it has mounted to the AlertController provider. Here, you can integrate any UIViewController with AlertFactory.
 
 So, the methods are similary with the methods used to create the alert:
-##### func with(title: String) -> Self
+##### func with(title: Title) -> Self
+The Title type is a generic type that allow you to create different layouts for your alert depending of what you want to do. It can be any class, struct, enum and primitive types. It is all ready for you to use. You only need to specify the type when you write the extension of AlertFactory in function parameter, because it is an associated type. <b>(Added in verison 1.1.0)</b>
+
 Depending on the AlertController, you will have to recreate the AlertController or just call some method like .setTitle(title)
 
 The example for UIAlertController already done in this library is:
@@ -64,20 +67,27 @@ extension UIAlertController: AlertFactoryType {
     }
 }
 ```
-##### func with(text: String, at index: Int) -> Self
-This method is a trick for different possible AlertControllers. By default, the index will be zero all the time that you call `AlertFactory<UIAlertController>().with(text: "This is the message")`.
+##### func with(text: Text) -> Self
+As same as with(title:), we rewrite this function to use associated type, that allow you to write more complex alerts. So, if your parameter is an Array, automatically, you will have to functions in AlertFactory, the default one is .with(text: [Element]) and the second one is .append(text: Element). Now, you do not need to specify index, only appending in the write order.
 
-Sometimes, you can have one AlertController that has different fields for body content where the message is shown. So, to make more easier, you can share this setting using the index parameter by calling the AlertFactory with index specified: `AlertFactory<UIAlertController>().with(text: "This is the subtitle").with(text: "This is the message", at: 1)`. Now, you can set the AlertController, if is available, like this:
 ```swift
-extension ExampleAlertController: AlertFactoryType {
-    func with(text: String, at index: Int) -> Self {
-        if index == 0 {
-            self.subtitle(text)
-        } else {
-            self.text(text)
-        }
-        return self
+// Text as primitive type
+extension UIAlertController: AlertFactoryType {
+    public func with(text: String) -> Self {
+        return .init(title: self.title, message: text, preferredStyle: self.preferredStyle)
     }
+}
+```
+
+```
+// Text as Array of primitive
+extension AlertController: AlertFactoryType {
+	public func with(text: [String]) -> Self {
+		text.forEach {
+			self.subtitle.append($0)
+		}
+		return self
+	 }
 }
 ```
 
@@ -151,27 +161,54 @@ You can implement the methods `with(preferredStyle: UIAlertController.Style)`, `
 The `didConfiguredAlertView()` is important to stylize your AlertController without to implement a default class and use as your alert.
 
 #### 3. AlertFactoryError
-This class should be overridden to create your own error casting when you call .forError() in your AlertFactory.
+A new implementation for this are using the Title and Text generic types, so, your AlertFactoryError should constraint the same type as specified in the AlertFactoryType.
 
-In some projects, we had to call forError by setting as parameter the FieldValidationError, a internal class. So, first we create a BaseAlertFactory and create to methods.
+We move the .forError() rules to inside AlertFactoryError, the only thing you need is to specify correctly the title and text types.
 
-```swift 
+The first step we did is to implement the `.forError(_ error: Swift.Error) -> Self {}` in your BaseAlertFactory.  Because we want to override the AlertFactoryError.
+
+```swift
+import AlertFactory
+
 class BaseAlertFactory<T: UIViewController & AlertFactoryType>: AlertFactory<T> {
-    override func forError(_ error: AlertFactoryError) -> Self {
-        if let fieldError = self.error as? FieldValidationError {
-            return self.with(text: fieldError.message)
-        }
-
-        super.forError(error).append()
+	func forError(_ error: Swift.Error) -> Self {
+		if error.isSessionExpired {
+			self.destructiveButton(title: "Login", onTap: {
+				User.login()
+				AppDelegate.shared.changeToLoginView()
+			}).append()
+		}
+        
+		// Where we pass the overriden AlertFactoryError
+        super.forError(BaseAlertFactoryError(error)).append()
         return self
     }
+```
 
-    func forError(_ error: Swift.Error) -> Self {
-        return self.forError(AlertFactoryError(error))
-    }
+```swift 
+import AlertFactory
+class BaseAlertFactoryError: AlertFactoryErrorType {
+
+	var text: String? {
+		if self.error.isSessionExpired {
+			return "To continue using this app do the login again."
+		}
+
+		return self.error.localizedDescription
+	}
+
+	var title: String? {
+		return nil
+	}
+
+	public let error: Swift.Error
+
+	required public init(_ error: Swift.Error) {
+		self.error = error
+	}
 }
 ```
-This is a simple example, but you can create classes extended with AlertFactoryError and override the title and message parameters and use it by implementing your own BaseAlertFactory like the example above.
+This is a simple example, but you can create classes extended with AlertFactoryError and override the title and text parameters and use it by implementing your own BaseAlertFactory like the example above.
 
 ### Usage
 ---
@@ -232,7 +269,7 @@ extension MainViewController {
         let alert = AlertFactory<UIAlertController>(viewController: self)
             .with(preferredStyle: .actionSheet)
             .with(title: "Profile")
-            .with(message: "Pick your profile image")
+            .with(text: "Pick your profile image")
             .cancelButton()
             .otherButton(title: "Photo Library") { [weak self] in
                 self?.openImagePickerController(sourceType: .photoLibrary)

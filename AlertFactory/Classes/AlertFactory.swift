@@ -53,7 +53,7 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
         return self
     }
     
-    public final func with<E>(text: E) -> Self where Text == Array<E> {
+    public final func append<E>(text: E) -> Self where Text == Array<E> {
         self.payload.text = (self.payload.text ?? []) + [text]
         return self
     }
