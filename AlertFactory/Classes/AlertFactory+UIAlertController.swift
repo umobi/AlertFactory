@@ -8,14 +8,14 @@
 
 import Foundation
 
-extension UIAlertController: AlertFactoryType {
+extension UIAlertController: AlertFactoryType {    
     
     public func with(title: String) -> Self {
         return .init(title: title, message: self.message, preferredStyle: self.preferredStyle)
     }
     
-    public func with(text: String, at index: Int) -> Self {
-        return .init(title: self.title, message: (self.message ?? "") + text, preferredStyle: self.preferredStyle)
+    public func with(text: String) -> Self {
+        return .init(title: self.title, message: text, preferredStyle: self.preferredStyle)
     }
     
     public func with(preferredStyle: UIAlertController.Style) -> Self {

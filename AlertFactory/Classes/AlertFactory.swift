@@ -10,10 +10,13 @@ import Foundation
 import UIKit
 
 open class AlertFactory<T: UIViewController & AlertFactoryType> {
+    public typealias Title = T.Title
+    public typealias Text = T.Text
+    
     private weak var mainView: UIViewController?
     private var alertView: T?
     
-    private var payload = AlertFactoryPayload()
+    private var payload = AlertFactoryPayload<Title, Text>()
     
     open var defaultCancelTitle: String {
         return "Cancel"
@@ -30,7 +33,7 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
     
     public final func append() {}
     
-    public final func with(title: String) -> Self {
+    public final func with(title: Title) -> Self {
         self.payload.title = title
         return self
     }
@@ -45,8 +48,13 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
         return self
     }
     
-    public final func with(text: String, at index: Int = 0) -> Self {
-        self.payload.text.append((text, index))
+    public final func with(text: Text) -> Self {
+        self.payload.text = text
+        return self
+    }
+    
+    public final func append<E>(text: E) -> Self where Text == Array<E> {
+        self.payload.text = (self.payload.text ?? []) + [text]
         return self
     }
     
@@ -60,14 +68,14 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
         return self
     }
     
-    open func forError(_ error: AlertFactoryError) -> AlertFactory<T> {
-        if let title = error.title {
+    open func forError<Error: AlertFactoryErrorType>(_ error: Error) -> Self {
+        if let title = error.title as? T.Title {
             self.with(title: title)
                 .append()
         }
         
-        if let message = error.message {
-            self.with(text: message, at: 0)
+        if let message = error.text as? T.Text {
+            self.with(text: message)
                 .append()
         }
         
@@ -181,8 +189,8 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
             viewController = viewController.with(title: title)
         }
         
-        payload.text.forEach { text, index in
-            viewController = viewController.with(text: text, at: index)
+        if let text = payload.text {
+            viewController = viewController.with(text: text)
         }
         
         viewController = viewController.with(preferredStyle: payload.preferedStyle)

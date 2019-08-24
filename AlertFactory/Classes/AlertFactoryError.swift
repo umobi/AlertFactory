@@ -8,18 +8,29 @@
 
 import Foundation
 
-open class AlertFactoryError {
-    open var title: String? {
+public protocol AlertFactoryErrorType {
+    var error: Swift.Error { get }
+    init(_ error: Swift.Error)
+    
+    associatedtype Title
+    associatedtype Text
+    
+    var title: Title? { get }
+    var text: Text? { get }
+}
+
+open class AlertFactoryError: AlertFactoryErrorType {
+    public var title: String? {
         return nil
     }
     
-    open var message: String? {
+    public var text: String? {
         return error.localizedDescription
     }
     
     public let error: Swift.Error
     
-    public init(_ error: Swift.Error) {
+    required public init(_ error: Swift.Error) {
         self.error = error
     }
 }

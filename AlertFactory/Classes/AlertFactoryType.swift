@@ -10,8 +10,11 @@ import Foundation
 import UIKit
 
 public protocol AlertFactoryType {
-    func with(title: String) -> Self
-    func with(text: String, at index: Int) -> Self
+    associatedtype Title
+    associatedtype Text
+    
+    func with(title: Title) -> Self
+    func with(text: Text) -> Self
     func with(image: UIImage) -> Self
     func with(preferredStyle: UIAlertController.Style) -> Self
     
