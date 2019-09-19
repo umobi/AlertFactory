@@ -182,6 +182,12 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
         self.present(at: mainView, completion: completion)
     }
     
+    private var layoutHandler: ((T) -> Void)? = nil
+    final public func applyLayout(_ handler: @escaping (T) -> Void) -> Self {
+        self.layoutHandler = handler
+        return self
+    }
+    
     private func applyBasic() -> T {
         var viewController = T()
         
@@ -199,6 +205,7 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
             viewController = viewController.with(image: image)
         }
         
+        self.layoutHandler?(viewController)
         return viewController
     }
     
