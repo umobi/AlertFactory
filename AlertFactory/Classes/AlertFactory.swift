@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-open class AlertFactory<T: UIViewController & AlertFactoryType> {
-    public typealias Title = T.Title
-    public typealias Text = T.Text
+open class AlertFactory<Alert: AlertFactoryType> {
+    public typealias Title = Alert.Title
+    public typealias Text = Alert.Text
     
     private weak var mainView: UIViewController?
-    private var alertView: T?
+    private var alertView: Alert?
     
     private var payload = AlertFactoryPayload<Title, Text>()
     
@@ -69,12 +69,12 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
     }
     
     open func forError<Error: AlertFactoryErrorType>(_ error: Error) -> Self {
-        if let title = error.title as? T.Title {
+        if let title = error.title as? Alert.Title {
             self.with(title: title)
                 .append()
         }
         
-        if let message = error.text as? T.Text {
+        if let message = error.text as? Alert.Text {
             self.with(text: message)
                 .append()
         }
@@ -156,7 +156,7 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
             print("ViewController is presenting \(presented.description)")
         }
         
-        vc.present(alertView, animated: true, completion: {
+        vc.present(alertView.alertController, animated: true, completion: {
             completion?(true)
         })
     }
@@ -182,59 +182,59 @@ open class AlertFactory<T: UIViewController & AlertFactoryType> {
         self.present(at: mainView, completion: completion)
     }
     
-    private var layoutHandler: ((T) -> Void)? = nil
-    final public func applyLayout(_ handler: @escaping (T) -> Void) -> Self {
+    private var layoutHandler: ((Alert) -> Void)? = nil
+    final public func applyLayout(_ handler: @escaping (Alert) -> Void) -> Self {
         self.layoutHandler = handler
         return self
     }
     
-    private func applyBasic() -> T {
-        var viewController = T()
+    private func applyBasic() -> Alert {
+        var alert = Alert.init()
         
         if let title = payload.title {
-            viewController = viewController.with(title: title)
+            alert = alert.with(title: title)
         }
         
         if let text = payload.text {
-            viewController = viewController.with(text: text)
+            alert = alert.with(text: text)
         }
         
-        viewController = viewController.with(preferredStyle: payload.preferedStyle)
+        alert = alert.with(preferredStyle: payload.preferedStyle)
         
         if let image = payload.image {
-            viewController = viewController.with(image: image)
+            alert = alert.with(image: image)
         }
         
-        self.layoutHandler?(viewController)
-        return viewController
+        self.layoutHandler?(alert)
+        return alert
     }
     
-    public final func asAlertView() -> T? {
+    public final func asAlertView() -> Alert? {
         let view = self.applyBasic()
         
-        var viewController = AlertFactory.allFields(in: view, self.payload.inputTitles) ?? view
+        var alertView = AlertFactory.allFields(in: view, self.payload.inputTitles) ?? view
         
         if !self.hasButton {
-            viewController = viewController.append(button: AlertFactoryButton.cancel(title: self.defaultCancelTitle))
+            alertView = alertView.append(button: AlertFactoryButton.cancel(title: self.defaultCancelTitle))
         } else {
             if let cancelButton = self.payload.cancelButton {
-                viewController = viewController.append(button: cancelButton)
+                alertView = alertView.append(button: cancelButton)
             }
             
             if let destructiveButton = self.payload.destructiveButton {
-                viewController = viewController.append(button: destructiveButton)
+                alertView = alertView.append(button: destructiveButton)
             }
             
             payload.otherButtons.forEach {
-                viewController = viewController.append(button: $0)
+                alertView = alertView.append(button: $0)
             }
         }
         
-        viewController.didConfiguredAlertView()
-        return viewController
+        alertView.didConfiguredAlertView()
+        return alertView
     }
     
-    private static func allFields(in alertView: T, _ fields: [AlertFactoryField]) -> T? {
+    private static func allFields(in alertView: Alert, _ fields: [AlertFactoryField]) -> Alert? {
         var fields = fields
         var alertView = alertView
         
