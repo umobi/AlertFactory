@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol AlertFactoryType {
+public protocol AlertFactoryType: class {
     associatedtype Title
     associatedtype Text
     
@@ -22,6 +22,10 @@ public protocol AlertFactoryType {
     func append(button: AlertFactoryButton) -> Self
     
     func didConfiguredAlertView()
+    
+    var alertController: UIViewController { get }
+    
+    init()
 }
 
 public extension AlertFactoryType {
@@ -31,4 +35,10 @@ public extension AlertFactoryType {
     func with(preferredStyle: UIAlertController.Style) -> Self { return self }
     
     func didConfiguredAlertView() {}
+}
+
+public extension AlertFactoryType where Self: UIViewController {
+    var alertController: UIViewController {
+        return self
+    }
 }

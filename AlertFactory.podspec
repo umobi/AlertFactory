@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AlertFactory'
-  s.version          = '1.1.1'
+  s.version          = '1.1.2'
   s.summary          = 'An easier constructor for any AlertController'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ AlertFactory does everything you need to make more easy using any AlertControlle
   s.source           = { :git => 'https://github.com/umobi/AlertFactory.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.swift_version = '5.0'
+  s.swift_version = '5.1'
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'AlertFactory/Classes/**/*'
