@@ -1,8 +1,9 @@
 ### Features
 
-- You can override `AlertFactory` for standarts error alerts using `AlertFactoryError`.
+- The AlertFactory generic type Alert doesn't need to be a UIViewController any more, but, if it is not, you should write the `alertController: UIViewController { get }`.
+- Added a handler for layout `applyLayout`before presenting the alertController.
+- You can override `AlertFactory` for standards error alerts using `AlertFactoryError`.
 - `defaultCancelTitle` and `defaultForceCancelTitle` are properties in `AlertFactory` used to display default cancels buttons on alert.
-- The `presentationViewController` should be overridden in case you have async alerts. It should return the current viewController displayed.
 
 # AlertFactory
 
@@ -25,7 +26,7 @@ pod 'AlertFactory'
 ----
 
 #### 1. AlertFactory
-AlertFactory is the main core that should be specified the T generic type as UIViewController and **AlertFactoryType**.
+AlertFactory is the main core that needs to be specified the Alert generic type as **AlertFactoryType**.
 
 The library already has implemented the extension for UIAlertController, so you can use the AlertFactory without writing any code, just calling `AlertFactory<UIAlertController>`.
 
@@ -44,18 +45,19 @@ The methods to create the alert are:
 - .present(completion: (() -> Void)? = nil)
 - .append()
 - .asAlertView() -> UIViewController?
+- .applyLayout(_ handler: (Alert) -> Void))
 
-The spectifications for otherButton, cancelButton and destructiveButton are for UIAlertController button types.
+The specifications for otherButton, cancelButton and destructiveButton are for UIAlertController button types.
 
-The append() method should be use to discard the AlertFactory self return 
+The append() method should be used to discard the AlertFactory self-return.
 
 #### 2. AlertFactoryType
 
 The AlertFactoryType is a protocol that helps AlertFactory to delivery the payload that it has mounted to the AlertController provider. Here, you can integrate any UIViewController with AlertFactory.
 
-So, the methods are similary with the methods used to create the alert:
+So, the methods are similar to the methods used to create the alert:
 ##### func with(title: Title) -> Self
-The Title type is a generic type that allow you to create different layouts for your alert depending of what you want to do. It can be any class, struct, enum and primitive types. It is all ready for you to use. You only need to specify the type when you write the extension of AlertFactory in function parameter, because it is an associated type. <b>(Added in verison 1.1.0)</b>
+The Title type is a generic type that allows you to create different layouts for your alert depending on what you want to do. It can be any class, struct, enum, and primitive types. It is all ready for you to use. You only need to specify the type when you write the extension of AlertFactory in function parameter because it is an associated type. <b>(Added in version 1.1.0)</b>
 
 Depending on the AlertController, you will have to recreate the AlertController or just call some method like .setTitle(title)
 
@@ -68,7 +70,7 @@ extension UIAlertController: AlertFactoryType {
 }
 ```
 ##### func with(text: Text) -> Self
-As same as with(title:), we rewrite this function to use associated type, that allow you to write more complex alerts. So, if your parameter is an Array, automatically, you will have to functions in AlertFactory, the default one is .with(text: [Element]) and the second one is .append(text: Element). Now, you do not need to specify index, only appending in the write order.
+As same as with(title:), we rewrite this function to use associated type, which allows you to write more complex alerts. So, if your parameter is an Array, automatically, you will have to functions in AlertFactory, the default one is .with(text: [Element]) and the second one is .append(text: Element). Now, you do not need to specify an index, only appending in the write order.
 
 ```swift
 // Text as primitive type
@@ -82,17 +84,17 @@ extension UIAlertController: AlertFactoryType {
 ```
 // Text as Array of primitive
 extension AlertController: AlertFactoryType {
-	public func with(text: [String]) -> Self {
-		text.forEach {
-			self.subtitle.append($0)
-		}
-		return self
-	 }
+    public func with(text: [String]) -> Self {
+        text.forEach {
+            self.subtitle.append($0)
+        }
+        return self
+     }
 }
 ```
 
 ##### func with(image: UIImage) -> Self
-This method is optional but will be called everything you use AlertFactory.with(image:). Like it means, you can set image to your alert if is available.
+This method is optional but will be called everything you use AlertFactory.with(image:). As it means, you can set an image to your alert if is available.
 
 ```swift
 extension ExampleAlertController: AlertFactoryType {
@@ -105,7 +107,7 @@ extension ExampleAlertController: AlertFactoryType {
 
 ##### func append(button: AlertFactoryButton) -> Self
 
-The AlertFactoryButton is a wrapper created by AlertFactory and holds the informations necessaly to create the action button. But, depending on your AlertController, the style property doesn't fit well. So, you should implement some adaptions to this.
+The AlertFactoryButton is a wrapper created by AlertFactory and holds the pieces of information necessary to create the action button. But, depending on your AlertController, the style property doesn't fit well. So, you should implement some adaptions to this.
 
 The default UIAlertController example:
 ```swift
@@ -158,10 +160,10 @@ extension MDCAlertController: AlertFactoryType {
 
 You can implement the methods `with(preferredStyle: UIAlertController.Style)`, `append(textField: AlertFactoryField)` and `didConfiguredAlertView()`. 
 
-The `didConfiguredAlertView()` is important to stylize your AlertController without to implement a default class and use as your alert.
+The `didConfiguredAlertView()` is important to stylize your AlertController without implementing a default class and use it as your alert.
 
 #### 3. AlertFactoryError
-A new implementation for this are using the Title and Text generic types, so, your AlertFactoryError should constraint the same type as specified in the AlertFactoryType.
+A new implementation for this is using the Title and Text generic types, so, your AlertFactoryError should constraint the same type as specified in the AlertFactoryType.
 
 We move the .forError() rules to inside AlertFactoryError, the only thing you need is to specify correctly the title and text types.
 
@@ -170,16 +172,16 @@ The first step we did is to implement the `.forError(_ error: Swift.Error) -> Se
 ```swift
 import AlertFactory
 
-class BaseAlertFactory<T: UIViewController & AlertFactoryType>: AlertFactory<T> {
-	func forError(_ error: Swift.Error) -> Self {
-		if error.isSessionExpired {
-			self.destructiveButton(title: "Login", onTap: {
-				User.login()
-				AppDelegate.shared.changeToLoginView()
-			}).append()
-		}
+class BaseAlertFactory<Alert: UIViewController & AlertFactoryType>: AlertFactory<Alert> {
+    func forError(_ error: Swift.Error) -> Self {
+        if error.isSessionExpired {
+            self.destructiveButton(title: "Login", onTap: {
+                User.login()
+                AppDelegate.shared.changeToLoginView()
+            }).append()
+        }
         
-		// Where we pass the overriden AlertFactoryError
+        // Where we pass the overriden AlertFactoryError
         super.forError(BaseAlertFactoryError(error)).append()
         return self
     }
@@ -189,26 +191,26 @@ class BaseAlertFactory<T: UIViewController & AlertFactoryType>: AlertFactory<T> 
 import AlertFactory
 class BaseAlertFactoryError: AlertFactoryErrorType {
 
-	var text: String? {
-		if self.error.isSessionExpired {
-			return "To continue using this app do the login again."
-		}
+    var text: String? {
+        if self.error.isSessionExpired {
+            return "To continue using this app do the login again."
+        }
 
-		return self.error.localizedDescription
-	}
+        return self.error.localizedDescription
+    }
 
-	var title: String? {
-		return nil
-	}
+    var title: String? {
+        return nil
+    }
 
-	public let error: Swift.Error
+    public let error: Swift.Error
 
-	required public init(_ error: Swift.Error) {
-		self.error = error
-	}
+    required public init(_ error: Swift.Error) {
+        self.error = error
+    }
 }
 ```
-This is a simple example, but you can create classes extended with AlertFactoryError and override the title and text parameters and use it by implementing your own BaseAlertFactory like the example above.
+This is a simple example, but you can create classes extended with AlertFactoryError and override the title and text parameters and use it by implementing your BaseAlertFactory like the example above.
 
 ### Usage
 ---
@@ -235,7 +237,7 @@ class MainViewController: UIViewController {
 ```
 
 #### 2. Treating Error Actions
-As specified the FieldValidationError, we want to call the correct Field after the AlertController be dismissed using the **BaseAlertFactory** example.
+We have FieldValidationError as Error class child, we want to call the correct Field after the AlertController be dismissed using the **BaseAlertFactory** example.
 ```swift
 import AlertFactory
 
@@ -259,7 +261,7 @@ class MainViewController: UIViewController {
 }
 ```
 #### 3. Different Buttons for some Event
-This helps when you are creating the .actionSheet and you want to display or not the delete photo just if the user had selected some photo before. You can do this by calling .append() method.
+This helps when you are creating the .actionSheet and you want to display or not the delete photo just if the user had selected some photo before. You can do this by calling the .append() method.
 
 ```swift
 import AlertFactory
@@ -289,7 +291,7 @@ extension MainViewController {
 ```
 
 #### 4. Passing the AlertController as UIViewController
-Sometimes, we can use other classes to present the AlertController and maybe its does not have the UIViewController.present(). With this, you can call .asAlertView() to create you AlertController using AlertFactory
+Sometimes, we can use other classes to present the AlertController and maybe it does not have the UIViewController.present(). With this, you can call .asAlertView() to create your AlertController using AlertFactory.
 
 ```swift
 import AlertFactory
@@ -310,9 +312,9 @@ class Event {
 }
 ```
 
-#### 5. Hidden `T` generic type
+#### 5. Hidden `Alert` generic type
 
-To make your code more easier to read you can create a class that extends AlertFactory and call it without specifying the T parameter all the times.
+To make your code easier to read you can create a class that extends AlertFactory and call it without specifying the Alert parameter all the time.
 
 ```swift
 import AlertFactory
@@ -332,7 +334,7 @@ extension MainViewController {
 
 ## Author
 
-brennoumobi, brenno@umobi.com.br
+brennobemoura, brennobemoura@outlook.com.br
 
 ## License
 
