@@ -44,10 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09FBD5A3C13DF3CE443CF7E7565BDB39 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		138D9E0984629CBB6051FFB466690651 /* AlertFactoryButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryButton.swift; path = AlertFactory/Classes/AlertFactoryButton.swift; sourceTree = "<group>"; };
+		09FBD5A3C13DF3CE443CF7E7565BDB39 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		138D9E0984629CBB6051FFB466690651 /* AlertFactoryButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryButton.swift; path = Sources/AlertFactory/Classes/AlertFactoryButton.swift; sourceTree = "<group>"; };
 		1FAE9FA905914258C6D70DC7884A0E68 /* Pods-AlertFactory_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertFactory_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1FD484206A5ED6BA151E189FB5F06722 /* AlertFactoryPayload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryPayload.swift; path = AlertFactory/Classes/AlertFactoryPayload.swift; sourceTree = "<group>"; };
+		1FD484206A5ED6BA151E189FB5F06722 /* AlertFactoryPayload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryPayload.swift; path = Sources/AlertFactory/Classes/AlertFactoryPayload.swift; sourceTree = "<group>"; };
 		312B988EF117AE4DE76A268D970131FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		3718B9D863A7ED08968CFC65BD0A9BFB /* AlertFactory-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AlertFactory-Info.plist"; sourceTree = "<group>"; };
 		38AF9FBDD3DB6BE6A3E1F04B49AFF2EE /* Pods-AlertFactory_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -57,30 +57,30 @@
 		436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		4CDB582C6942B696C5AB3DBC99439E32 /* AlertFactory-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlertFactory-umbrella.h"; sourceTree = "<group>"; };
 		51C073853FBDDD214DB3D158C8C20AD7 /* Pods-AlertFactory_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5C1EBB77D64A924592C4EADE0FDC59A3 /* AlertFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AlertFactory.framework; path = AlertFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E74F5183D466AC4C9A34E7826A68691 /* AlertFactoryError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryError.swift; path = AlertFactory/Classes/AlertFactoryError.swift; sourceTree = "<group>"; };
+		5C1EBB77D64A924592C4EADE0FDC59A3 /* AlertFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlertFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E74F5183D466AC4C9A34E7826A68691 /* AlertFactoryError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryError.swift; path = Sources/AlertFactory/Classes/AlertFactoryError.swift; sourceTree = "<group>"; };
 		5FA836FC5A4B02105D255999388BA144 /* AlertFactory.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlertFactory.xcconfig; sourceTree = "<group>"; };
 		669FFF187C2D30F69F36ECC1FA72D562 /* Pods-AlertFactory_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlertFactory_Example-frameworks.sh"; sourceTree = "<group>"; };
-		67458CBB8E36A52BAE30A5AF43F0CC2D /* AlertFactoryType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryType.swift; path = AlertFactory/Classes/AlertFactoryType.swift; sourceTree = "<group>"; };
+		67458CBB8E36A52BAE30A5AF43F0CC2D /* AlertFactoryType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryType.swift; path = Sources/AlertFactory/Classes/AlertFactoryType.swift; sourceTree = "<group>"; };
 		723C89B41F9C485B084AC98DE1673375 /* Pods-AlertFactory_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlertFactory_Example-dummy.m"; sourceTree = "<group>"; };
 		8832A232B548CF1ADEFCC879916DE2E3 /* Pods-AlertFactory_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlertFactory_Tests.modulemap"; sourceTree = "<group>"; };
-		89A5EB7BCDB52F25D41C469CD2251F96 /* AlertFactoryField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryField.swift; path = AlertFactory/Classes/AlertFactoryField.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		89A5EB7BCDB52F25D41C469CD2251F96 /* AlertFactoryField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactoryField.swift; path = Sources/AlertFactory/Classes/AlertFactoryField.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A1F2A196D7D9D145E90B3DC4F5B91FCE /* Pods-AlertFactory_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		A2ED2119B7B64420C5DFD042A0C7F61D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		A2ED2119B7B64420C5DFD042A0C7F61D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A36B8C6F6496C985A5542D6074C92DF0 /* AlertFactory-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlertFactory-prefix.pch"; sourceTree = "<group>"; };
-		B9D9C830EECB557111C34843E57D2A16 /* AlertFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactory.swift; path = AlertFactory/Classes/AlertFactory.swift; sourceTree = "<group>"; };
+		B9D9C830EECB557111C34843E57D2A16 /* AlertFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertFactory.swift; path = Sources/AlertFactory/Classes/AlertFactory.swift; sourceTree = "<group>"; };
 		BB2F8011B22B20A0AEFEFDE6F679A0AE /* Pods-AlertFactory_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertFactory_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BB9F17F2F4F375622ABFBBA67904531E /* Pods-AlertFactory_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertFactory_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		BCA3A0C2CC7705CEB59ECA48992964D1 /* Pods_AlertFactory_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlertFactory_Example.framework; path = "Pods-AlertFactory_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCA3A0C2CC7705CEB59ECA48992964D1 /* Pods_AlertFactory_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertFactory_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D5C1D8C979060E526B3921C77311D0 /* AlertFactory-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlertFactory-dummy.m"; sourceTree = "<group>"; };
 		C2E7BED820481F14EDABB662EDC729BD /* Pods-AlertFactory_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertFactory_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		CC3452FDEE15DD158D866A92D7F622C8 /* AlertFactory.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AlertFactory.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CC3452FDEE15DD158D866A92D7F622C8 /* AlertFactory.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = AlertFactory.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D8150A4AE700AD314B6761F337222573 /* Pods-AlertFactory_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlertFactory_Tests-umbrella.h"; sourceTree = "<group>"; };
 		E078E900C7FC2292458C80F0C99533CF /* Pods-AlertFactory_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertFactory_Tests-Info.plist"; sourceTree = "<group>"; };
 		E13C8FD85ACA8AEB51301DFE93C9B13F /* Pods-AlertFactory_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertFactory_Example-Info.plist"; sourceTree = "<group>"; };
-		E8A4B5D4C8C65C933BF7A063707C8988 /* Pods_AlertFactory_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlertFactory_Tests.framework; path = "Pods-AlertFactory_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEC9D44F835148ADB21E9B69E91C5B66 /* AlertFactory+UIAlertController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AlertFactory+UIAlertController.swift"; path = "AlertFactory/Classes/AlertFactory+UIAlertController.swift"; sourceTree = "<group>"; };
+		E8A4B5D4C8C65C933BF7A063707C8988 /* Pods_AlertFactory_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertFactory_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEC9D44F835148ADB21E9B69E91C5B66 /* AlertFactory+UIAlertController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AlertFactory+UIAlertController.swift"; path = "Sources/AlertFactory/Classes/AlertFactory+UIAlertController.swift"; sourceTree = "<group>"; };
 		F8AECBB12429EDF56D69CC64DF48EA5E /* Pods-AlertFactory_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlertFactory_Tests-dummy.m"; sourceTree = "<group>"; };
 		FFC117CA0279955BEB4FC2ABFDA5859E /* Pods-AlertFactory_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlertFactory_Example.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -649,8 +649,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
