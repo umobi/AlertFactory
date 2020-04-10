@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AlertFactory'
-  s.version          = '1.1.2'
-  s.summary          = 'An easier constructor for any AlertController'
+  s.version          = '1.1.3'
+  s.summary          = 'An declarative constructor for any AlertController'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -24,20 +24,19 @@ AlertFactory does everything you need to make more easy using any AlertControlle
   s.homepage         = 'https://github.com/umobi/AlertFactory'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'brennoumobi' => 'brenno@umobi.com.br' }
+  s.author           = { 'brennobemoura' => 'brenno@umobi.com.br' }
   s.source           = { :git => 'https://github.com/umobi/AlertFactory.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.swift_version = '5.1'
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
-  s.source_files = 'AlertFactory/Classes/**/*'
+  s.source_files = 'Sources/AlertFactory/Classes/**/*'
   
   # s.resource_bundles = {
   #   'AlertFactory' => ['AlertFactory/Assets/*.png']
   # }
   
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
