@@ -20,44 +20,33 @@
 // THE SOFTWARE.
 //
 
-import Foundation
-import UIKit
+import SwiftUI
 
-extension UIAlertController: AlertFactoryType {    
-    
-    public func with(title: String) -> Self {
-        return .init(title: title, message: self.message, preferredStyle: self.preferredStyle)
+public protocol RawAlert {
+    func render<Content: View>(_ content: Content, _ isPresenting: Binding<Bool>) -> AnyView
+}
+
+public extension RawAlert {
+    func present(_ render: AlertRender<Self>) {
+        render.payload += [self]
     }
-    
-    public func with(text: String) -> Self {
-        return .init(title: self.title, message: text, preferredStyle: self.preferredStyle)
+
+    func present() {
+        guard let render = AlertManager.shared.render(Self.self) else {
+            print("[Warning] couldn't restore AlertFactory<\(Self.self)> on AlertManager")
+            return
+        }
+
+        render.payload += [self]
     }
-    
-    public func with(preferredStyle: UIAlertController.Style) -> Self {
-        return .init(title: self.title, message: self.message, preferredStyle: preferredStyle)
-    }
-    
-    public func append(textField: AlertFactoryField) -> Self {
-        self.addTextField(configurationHandler: {
-            textField.onTextField($0)
-        })
-        
-        return self
-    }
-    
-    public func append(button: AlertFactoryButton) -> Self {
-        let action = UIAlertAction(title: button.title, style: button.style, handler: { _ in
-            button.onTap?()
-        })
-        
-        self.addAction(action)
-        
-        if button.isPreferred {
-            if #available(iOS 9.0, *) {
-                self.preferredAction = action
-            }
+
+    static func shared() -> AlertRender<Self> {
+        if let render = AlertManager.shared.render(Self.self) {
+            return render
         }
         
-        return self
+        let render = AlertRender<Self>()
+        AlertManager.shared.store(render)
+        return render
     }
 }

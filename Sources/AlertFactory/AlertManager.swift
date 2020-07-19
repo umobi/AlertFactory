@@ -21,31 +21,31 @@
 //
 
 import Foundation
-import UIKit
 
-public protocol AlertFactoryErrorType {
-    var error: Swift.Error { get }
-    init(_ error: Swift.Error)
-    
-    associatedtype Title
-    associatedtype Text
-    
-    var title: Title? { get }
-    var text: Text? { get }
-}
+class AlertManager {
+    struct Weak {
+        weak var object: AnyObject!
+    }
 
-open class AlertFactoryError: AlertFactoryErrorType {
-    public var title: String? {
-        return nil
+    var renders: [Weak] = []
+
+    func store<Payload>(_ render: AlertRender<Payload>) where Payload: RawAlert {
+        self.renders.append(.init(object: render))
     }
-    
-    public var text: String? {
-        return error.localizedDescription
+
+    func remove<Payload>(_ render: AlertRender<Payload>) where Payload: RawAlert {
+        self.renders = self.renders.filter {
+            $0.object !== render
+        }
     }
-    
-    public let error: Swift.Error
-    
-    required public init(_ error: Swift.Error) {
-        self.error = error
+
+    func render<Payload>(_ payloadType: Payload.Type) -> AlertRender<Payload>? where Payload: RawAlert {
+        guard let render = self.renders.first(where: { $0.object is AlertRender<Payload> })?.object as? AlertRender<Payload> else {
+            return nil
+        }
+
+        return render
     }
+
+    static let shared: AlertManager = .init()
 }

@@ -21,38 +21,54 @@
 //
 
 import Foundation
+
+#if os(iOS) || os(tvOS)
 import UIKit
 
-public protocol AlertFactoryType: class {
-    associatedtype Title
-    associatedtype Text
-    
-    func with(title: Title) -> Self
-    func with(text: Text) -> Self
-    func with(image: UIImage) -> Self
-    func with(preferredStyle: UIAlertController.Style) -> Self
-    
-    func append(textField: AlertFactoryField) -> Self
-    func append(button: AlertFactoryButton) -> Self
-    
-    func didConfiguredAlertView()
-    
-    var alertController: UIViewController { get }
-    
-    init()
-}
+internal class PresentAlertView: UIView {
+    weak private var viewController: UIViewController?
 
-public extension AlertFactoryType {
-    func with(image: UIImage) -> Self { return self }
-    func append(textField: AlertFactoryField) -> Self { return self }
-    
-    func with(preferredStyle: UIAlertController.Style) -> Self { return self }
-    
-    func didConfiguredAlertView() {}
-}
+    private var parent: UIViewController? {
+        sequence(
+            first: self as UIResponder,
+            next: { $0.next }
+        )
+        .first(where: { $0 is UIViewController }) as? UIViewController
+    }
 
-public extension AlertFactoryType where Self: UIViewController {
-    var alertController: UIViewController {
-        return self
+    private var readyToCommitHandler: (() -> Void)? = nil
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+
+        guard self.window != nil else {
+            return
+        }
+
+        self.readyToCommitHandler?()
+        self.readyToCommitHandler = nil
+    }
+
+    func present(_ viewController: UIViewController) {
+        guard self.viewController == nil else {
+            return
+        }
+
+        guard let parent = self.parent else {
+            self.readyToCommitHandler = { [weak self] in
+                self?.present(viewController)
+            }
+
+            return
+        }
+
+        parent.present(viewController, animated: true, completion: nil)
+
+        self.viewController = viewController
+    }
+
+    func dismiss() {
+        self.viewController?.dismiss(animated: true, completion: nil)
     }
 }
+#endif

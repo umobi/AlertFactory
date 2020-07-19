@@ -21,12 +21,42 @@
 //
 
 import Foundation
+import SwiftUI
+
+#if os(iOS) || os(tvOS)
 import UIKit
 
-final public class AlertFactoryField {
-    public let onTextField: (UITextField) -> Void
-    
-    public init(onTextField: @escaping (UITextField) -> Void) {
-        self.onTextField = onTextField
+internal struct PresentAlert: UIViewRepresentable {
+    typealias UIViewType = PresentAlertView
+
+    let isPresenting: Bool
+    let content: () -> AFAlertController
+    let onDismiss: () -> Void
+
+    init(isPresenting: Bool, onDismiss: @escaping () -> Void, content: @escaping () -> AFAlertController) {
+        self.isPresenting = isPresenting
+        self.onDismiss = onDismiss
+        self.content = content
+    }
+
+    func makeUIView(context: Context) -> PresentAlertView {
+        PresentAlertView()
+    }
+
+    func updateUIView(_ uiView: PresentAlertView, context: Context) {
+        if isPresenting {
+            let afView = self.content()
+
+            afView.dismissedHandler = {
+                self.onDismiss()
+            }
+
+            uiView.present(afView)
+
+            return
+        }
+
+        uiView.dismiss()
     }
 }
+#endif
