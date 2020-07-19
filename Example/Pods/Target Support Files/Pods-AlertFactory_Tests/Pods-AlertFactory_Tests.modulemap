@@ -1,6 +1,0 @@
-framework module Pods_AlertFactory_Tests {
-  umbrella header "Pods-AlertFactory_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
