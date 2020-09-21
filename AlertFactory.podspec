@@ -21,7 +21,7 @@ AlertFactory does everything you need to make more easy using any AlertControlle
   s.author           = { 'brennobemoura' => 'brenno@umobi.com.br' }
   s.source           = { :git => 'https://github.com/umobi/AlertFactory.git', :tag => s.version.to_s }
 
-  s.swift_version = '5.2'
+  s.swift_version = '5.3'
   s.ios.deployment_target = '13.0'
   s.watchos.deployment_target = '6.0'
   s.tvos.deployment_target = '13.0'
