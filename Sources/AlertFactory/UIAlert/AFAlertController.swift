@@ -28,8 +28,8 @@ import UIKit
 internal class AFAlertController: UIAlertController {
     var dismissedHandler: (() -> Void)? = nil
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
 
         if self.isBeingDismissed {
             self.dismissedHandler?()
@@ -49,7 +49,10 @@ extension AFAlertController {
             alertController.addAction(.init(
                 title: title,
                 style: style,
-                handler: { _ in onTap() }
+                handler: { [weak alertController] _ in
+                    print(alertController?.isBeingDismissed ?? "true")
+                    onTap()
+                }
             ))
         }
 

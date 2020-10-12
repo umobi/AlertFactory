@@ -23,7 +23,7 @@
 import SwiftUI
 
 public protocol RawAlert {
-    func render<Content: View>(_ content: Content, _ isPresenting: Binding<Bool>) -> AnyView
+    func render(_ isPresenting: Binding<Bool>) -> AnyView
 }
 
 public extension RawAlert {

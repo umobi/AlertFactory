@@ -26,37 +26,22 @@ private struct AlertView<Payload, Content>: View where Payload: RawAlert, Conten
     let content: () -> Content
     @ObservedObject var state: AlertRender<Payload>
 
-    @State var isPresenting: Bool = false
-    @State var payload: Payload?
-
     init(_ state: AlertRender<Payload>,_ content: @escaping () -> Content) {
         self.state = state
         self.content = content
     }
 
-    func lock() {
-        if let payload = self.state.payload.first {
-            if !self.isPresenting {
-                let payload = payload
-
-                OperationQueue.main.addOperation {
-                    self.isPresenting = true
-                    self.payload = payload
+    var body: some View {
+        self.content()
+            .environmentObject(self.state)
+            .background({ () -> AnyView in 
+                guard self.state.isPresenting, let payload = self.state.actualPayload else {
+                    return AnyView(EmptyView())
                 }
 
-                self.state.payload.removeFirst()
-            }
-        }
-    }
 
-    var body: AnyView {
-        self.lock()
-
-        guard self.isPresenting, let payload = self.payload else {
-            return AnyView(self.content())
-        }
-
-        return AnyView(payload.render(self.content(), self.$isPresenting))
+                return AnyView(payload.render(self.$state.isPresenting))
+            }())
     }
 }
 
@@ -65,9 +50,47 @@ public class AlertRender<Payload>: ObservableObject where Payload: RawAlert {
 
     public init() {}
 
+    internal var isPresenting: Bool = false {
+        didSet {
+            if oldValue && !self.isPresenting {
+                OperationQueue.main.addOperation {
+                    self.isLocked = false
+
+                    if self.payload.isEmpty {
+                        self.actualPayload = nil
+                        self.objectWillChange.send()
+                    } else {
+                        self.lock()
+                    }
+                }
+            }
+        }
+    }
+
+    internal var actualPayload: Payload?
+
     var payload: [Payload] = [] {
         didSet {
-            self.objectWillChange.send()
+            self.lock()
+        }
+    }
+
+    var isLocked: Bool = false
+
+    func lock() {
+        if let payload = self.payload.first {
+            if !self.isLocked {
+                self.isLocked = true
+                let payload = payload
+
+                OperationQueue.main.addOperation {
+                    self.isPresenting = true
+                    self.actualPayload = payload
+                    self.objectWillChange.send()
+                }
+
+                self.payload.removeFirst()
+            }
         }
     }
 

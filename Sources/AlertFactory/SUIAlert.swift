@@ -106,8 +106,9 @@ public struct SUIAlert: RawAlert {
         )
     }
 
-    public func render<Content: View>(_ content: Content, _ isPresenting: Binding<Bool>) -> AnyView {
-        AnyView(content.alert(isPresented: isPresenting, content: { self.alertMaker(isPresenting) }))
+    public func render(_ isPresenting: Binding<Bool>) -> AnyView {
+        AnyView(EmptyView()
+            .alert(isPresented: isPresenting, content: { self.alertMaker(isPresenting) }))
     }
 }
 

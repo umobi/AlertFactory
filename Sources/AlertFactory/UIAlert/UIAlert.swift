@@ -67,11 +67,15 @@ public struct UIAlert: RawAlert {
         }
     }
 
-    public func render<Content>(_ content: Content, _ isPresenting: Binding<Bool>) -> AnyView where Content : View {
-        AnyView(content.background(
+    public func render(_ isPresenting: Binding<Bool>) -> AnyView {
+        AnyView(
+            EmptyView()
+                .background(
                     PresentAlert(
                         isPresenting: isPresenting.wrappedValue,
-                        onDismiss: { isPresenting.wrappedValue = false },
+                        onDismiss: {
+                            isPresenting.wrappedValue = false
+                        },
                         content: {
                             AFAlertController.make(
                                 title: self.title,
@@ -86,7 +90,8 @@ public struct UIAlert: RawAlert {
                             )
                         }
                     )
-        ))
+                )
+        )
     }
 }
 
