@@ -27,5 +27,5 @@ AlertFactory does everything you need to make more easy using any AlertControlle
   s.tvos.deployment_target = '13.0'
   s.macos.deployment_target = '10.15'
 
-  s.source_files = 'Sources/AlertFactory/Classes/**/*'
+  s.source_files = 'Sources/AlertFactory/**/*'
 end
