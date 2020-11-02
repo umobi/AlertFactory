@@ -22,7 +22,9 @@
 
 import SwiftUI
 
+@frozen
 public struct SUIAlert: RawAlert {
+    @usableFromInline
     typealias ButtonPayload = (TextContent, ButtonStyle, () -> Void)
 
     private let title: TextContent?
@@ -41,21 +43,22 @@ public struct SUIAlert: RawAlert {
         self.buttons = editable.buttons.unique().sorted(by: { $0.1 < $1.1 })
     }
 
-    private func edit(_ edit: @escaping (Editable) -> Void) -> Self {
-        let editable = Editable(self)
-        edit(editable)
-        return .init(self, editable: editable)
-    }
-
-    private func button(title: TextContent, style: ButtonStyle, onTap: @escaping () -> Void) -> Self {
+    @usableFromInline
+    func button(title: TextContent, style: ButtonStyle, onTap: @escaping () -> Void) -> Self {
         self.edit {
             $0.buttons.append((title, style, onTap))
         }
     }
 
-    private class Editable {
+    @usableFromInline
+    class Editable {
+        @usableFromInline
         var title: TextContent?
+
+        @usableFromInline
         var message: TextContent?
+
+        @usableFromInline
         var buttons: [(TextContent, ButtonStyle, () -> Void)]
 
         init(_ original: SUIAlert) {
@@ -63,6 +66,13 @@ public struct SUIAlert: RawAlert {
             self.message = original.message
             self.buttons = original.buttons
         }
+    }
+
+    @inline(__always) @usableFromInline
+    func edit(_ edit: (Editable) -> Void) -> Self {
+        let editable = Editable(self)
+        edit(editable)
+        return .init(self, editable: editable)
     }
 
     private func makePrimaryButton(_ isPresenting: Binding<Bool>) -> Alert.Button {
@@ -114,45 +124,40 @@ public struct SUIAlert: RawAlert {
 
 public extension SUIAlert {
 
+    @frozen
     enum TextContent {
         case string(String)
         case text(Text)
     }
 
+    @frozen
     enum ButtonStyle: Comparable {
         case cancel
         case `default`
         case destructive
 
+        @inlinable
         public static func <(_ lhs: ButtonStyle, _ rhs: ButtonStyle) -> Bool {
-            switch lhs {
-            case .cancel:
-                return false
+            let options = [ButtonStyle.cancel, .default, .destructive].enumerated()
 
-            case .default:
-                if case .destructive = rhs {
-                    return true
-                }
-                return false
-            case .destructive:
-                if case .destructive = rhs {
-                    return false
-                }
+            let lhs = options.first(where: { $0.element == lhs })!
+            let rhs = options.first(where: { $0.element == rhs })!
 
-                return true
-            }
+            return lhs.offset < rhs.offset
         }
     }
 }
 
 public extension SUIAlert {
 
+    @inlinable
     func title(_ title: String) -> Self {
         self.edit {
             $0.title = .string(title)
         }
     }
 
+    @inlinable
     func title(_ text: Text) -> Self {
         self.edit {
             $0.title = .text(text)
@@ -162,12 +167,14 @@ public extension SUIAlert {
 
 public extension SUIAlert {
 
+    @inlinable
     func message(_ message: String) -> Self {
         self.edit {
             $0.message = .string(message)
         }
     }
 
+    @inlinable
     func message(_ text: Text) -> Self {
         self.edit {
             $0.message = .text(text)
@@ -177,6 +184,7 @@ public extension SUIAlert {
 
 public extension SUIAlert {
 
+    @inlinable
     func cancelButton(title: String, onTap: @escaping () -> Void) -> Self {
         self.button(
             title: .string(title),
@@ -185,6 +193,7 @@ public extension SUIAlert {
         )
     }
 
+    @inlinable
     func cancelButton(title: String) -> Self {
         self.button(
             title: .string(title),
@@ -193,6 +202,7 @@ public extension SUIAlert {
         )
     }
 
+    @inlinable
     func cancelButton(title: Text, onTap: @escaping () -> Void) -> Self {
         self.button(
             title: .text(title),
@@ -201,6 +211,7 @@ public extension SUIAlert {
         )
     }
 
+    @inlinable
     func cancelButton(title: Text) -> Self {
         self.button(
             title: .text(title),
@@ -212,6 +223,7 @@ public extension SUIAlert {
 
 public extension SUIAlert {
 
+    @inlinable
     func defaultButton(title: String, onTap: @escaping () -> Void) -> Self {
         self.button(
             title: .string(title),
@@ -220,6 +232,7 @@ public extension SUIAlert {
         )
     }
 
+    @inlinable
     func defaultButton(title: Text, onTap: @escaping () -> Void) -> Self {
         self.button(
             title: .text(title),
@@ -231,6 +244,7 @@ public extension SUIAlert {
 
 public extension SUIAlert {
 
+    @inlinable
     func destructiveButton(title: String, onTap: @escaping () -> Void) -> Self {
         self.button(
             title: .string(title),
@@ -239,6 +253,7 @@ public extension SUIAlert {
         )
     }
 
+    @inlinable
     func destructiveButton(title: Text, onTap: @escaping () -> Void) -> Self {
         self.button(
             title: .text(title),

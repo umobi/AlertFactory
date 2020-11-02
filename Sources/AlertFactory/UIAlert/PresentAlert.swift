@@ -26,23 +26,28 @@ import SwiftUI
 #if os(iOS) || os(tvOS)
 import UIKit
 
+@usableFromInline
 internal struct PresentAlert: UIViewRepresentable {
+    @usableFromInline
     typealias UIViewType = PresentAlertView
 
     let isPresenting: Bool
     let content: () -> AFAlertController
     let onDismiss: () -> Void
 
+    @usableFromInline
     init(isPresenting: Bool, onDismiss: @escaping () -> Void, content: @escaping () -> AFAlertController) {
         self.isPresenting = isPresenting
         self.onDismiss = onDismiss
         self.content = content
     }
 
+    @usableFromInline
     func makeUIView(context: Context) -> PresentAlertView {
         PresentAlertView()
     }
 
+    @usableFromInline
     func updateUIView(_ uiView: PresentAlertView, context: Context) {
         if isPresenting {
             let afView = self.content()

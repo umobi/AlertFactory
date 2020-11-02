@@ -22,6 +22,7 @@
 
 import Foundation
 
+@usableFromInline
 class AlertManager {
     struct Weak {
         weak var object: AnyObject!
@@ -29,16 +30,19 @@ class AlertManager {
 
     var renders: [Weak] = []
 
+    @usableFromInline
     func store<Payload>(_ render: AlertRender<Payload>) where Payload: RawAlert {
         self.renders.append(.init(object: render))
     }
 
+    @usableFromInline
     func remove<Payload>(_ render: AlertRender<Payload>) where Payload: RawAlert {
         self.renders = self.renders.filter {
             $0.object !== render
         }
     }
 
+    @usableFromInline
     func render<Payload>(_ payloadType: Payload.Type) -> AlertRender<Payload>? where Payload: RawAlert {
         guard let render = self.renders.first(where: { $0.object is AlertRender<Payload> })?.object as? AlertRender<Payload> else {
             return nil
@@ -47,5 +51,6 @@ class AlertManager {
         return render
     }
 
+    @usableFromInline
     static let shared: AlertManager = .init()
 }

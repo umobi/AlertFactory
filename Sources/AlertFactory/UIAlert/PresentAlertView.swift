@@ -25,6 +25,7 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
 
+@usableFromInline
 internal class PresentAlertView: UIView {
     weak private var viewController: UIViewController?
 

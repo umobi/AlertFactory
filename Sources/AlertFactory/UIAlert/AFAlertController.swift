@@ -25,6 +25,7 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
 
+@usableFromInline
 internal class AFAlertController: UIAlertController {
     var dismissedHandler: (() -> Void)? = nil
 
@@ -38,6 +39,7 @@ internal class AFAlertController: UIAlertController {
 }
 
 extension AFAlertController {
+    @usableFromInline
     static func make(title: String?,
                      message: String?,
                      style: UIAlertController.Style,

@@ -26,11 +26,21 @@ import SwiftUI
 #if os(iOS) || os(tvOS)
 import UIKit
 
+@frozen
 public struct UIAlert: RawAlert {
+    @usableFromInline
     typealias ButtonPayload = (String, UIAlertAction.Style, () -> Void)
+
+    @usableFromInline
     let title: String?
+    
+    @usableFromInline
     let message: String?
+
+    @usableFromInline
     let style: UIAlertController.Style
+
+    @usableFromInline
     let buttons: [ButtonPayload]
 
     public init() {
@@ -47,16 +57,18 @@ public struct UIAlert: RawAlert {
         self.buttons = editable.buttons.unique().sorted()
     }
 
-    private func edit(_ edit: @escaping (Editable) -> Void) -> Self {
-        let editable = Editable(self)
-        edit(editable)
-        return .init(self, editable: editable)
-    }
-
-    private class Editable {
+    @usableFromInline
+    class Editable {
+        @usableFromInline
         var title: String?
+
+        @usableFromInline
         var message: String?
+
+        @usableFromInline
         var style: UIAlertController.Style
+
+        @usableFromInline
         var buttons: [(String, UIAlertAction.Style, () -> Void)]
 
         init(_ original: UIAlert) {
@@ -67,6 +79,14 @@ public struct UIAlert: RawAlert {
         }
     }
 
+    @inline(__always) @usableFromInline
+    func edit(_ edit: (Editable) -> Void) -> Self {
+        let editable = Editable(self)
+        edit(editable)
+        return .init(self, editable: editable)
+    }
+
+    @inlinable
     public func render(_ isPresenting: Binding<Bool>) -> AnyView {
         AnyView(
             EmptyView()
@@ -96,6 +116,7 @@ public struct UIAlert: RawAlert {
 }
 
 public extension UIAlert {
+    @inlinable
     func title(_ title: String) -> Self {
         self.edit {
             $0.title = title
@@ -104,6 +125,7 @@ public extension UIAlert {
 }
 
 public extension UIAlert {
+    @inlinable
     func message(_ message: String) -> Self {
         self.edit {
             $0.message = title
@@ -112,6 +134,7 @@ public extension UIAlert {
 }
 
 public extension UIAlert {
+    @inlinable
     func cancelButton(title: String, onTap: @escaping () -> Void) -> Self {
         self.edit {
             $0.buttons += [(
@@ -122,6 +145,7 @@ public extension UIAlert {
         }
     }
 
+    @inlinable
     func cancelButton(title: String) -> Self {
         self.edit {
             $0.buttons += [(
@@ -134,6 +158,7 @@ public extension UIAlert {
 }
 
 public extension UIAlert {
+    @inlinable
     func destructiveButton(title: String, onTap: @escaping () -> Void) -> Self {
         self.edit {
             $0.buttons += [(
@@ -146,6 +171,7 @@ public extension UIAlert {
 }
 
 public extension UIAlert {
+    @inlinable
     func defaultButton(title: String, onTap: @escaping () -> Void) -> Self {
         self.edit {
             $0.buttons += [(
@@ -158,6 +184,7 @@ public extension UIAlert {
 }
 
 public extension UIAlert {
+    @inlinable
     func style(_ style: UIAlertController.Style) -> Self {
         self.edit {
             $0.style = style

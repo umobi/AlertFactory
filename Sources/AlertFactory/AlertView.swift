@@ -48,6 +48,7 @@ private struct AlertView<Payload, Content>: View where Payload: RawAlert, Conten
 public class AlertRender<Payload>: ObservableObject where Payload: RawAlert {
     public typealias Body = AnyView
 
+    @inlinable
     public init() {}
 
     internal var isPresenting: Bool = false {
@@ -69,6 +70,7 @@ public class AlertRender<Payload>: ObservableObject where Payload: RawAlert {
 
     internal var actualPayload: Payload?
 
+    @usableFromInline
     var payload: [Payload] = [] {
         didSet {
             self.lock()
@@ -100,7 +102,8 @@ public class AlertRender<Payload>: ObservableObject where Payload: RawAlert {
 }
 
 public extension View {
-    func alertFactory<Payload: RawAlert>(_ state: AlertRender<Payload>) -> AnyView {
-        AnyView(AlertView(state, { self }))
+    @inline(__always)
+    func alertFactory<Payload: RawAlert>(_ state: AlertRender<Payload>) -> some View {
+        AlertView(state, { self })
     }
 }
