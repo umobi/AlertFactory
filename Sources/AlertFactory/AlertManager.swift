@@ -21,38 +21,36 @@
 //
 
 import Foundation
-import UIKit
 
-public protocol AlertFactoryType: class {
-    associatedtype Title
-    associatedtype Text
-    
-    func with(title: Title) -> Self
-    func with(text: Text) -> Self
-    func with(image: UIImage) -> Self
-    func with(preferredStyle: UIAlertController.Style) -> Self
-    
-    func append(textField: AlertFactoryField) -> Self
-    func append(button: AlertFactoryButton) -> Self
-    
-    func didConfiguredAlertView()
-    
-    var alertController: UIViewController { get }
-    
-    init()
-}
-
-public extension AlertFactoryType {
-    func with(image: UIImage) -> Self { return self }
-    func append(textField: AlertFactoryField) -> Self { return self }
-    
-    func with(preferredStyle: UIAlertController.Style) -> Self { return self }
-    
-    func didConfiguredAlertView() {}
-}
-
-public extension AlertFactoryType where Self: UIViewController {
-    var alertController: UIViewController {
-        return self
+@usableFromInline
+class AlertManager {
+    struct Weak {
+        weak var object: AnyObject!
     }
+
+    var renders: [Weak] = []
+
+    @usableFromInline
+    func store<Payload>(_ render: AlertRender<Payload>) where Payload: RawAlert {
+        self.renders.append(.init(object: render))
+    }
+
+    @usableFromInline
+    func remove<Payload>(_ render: AlertRender<Payload>) where Payload: RawAlert {
+        self.renders = self.renders.filter {
+            $0.object !== render
+        }
+    }
+
+    @usableFromInline
+    func render<Payload>(_ payloadType: Payload.Type) -> AlertRender<Payload>? where Payload: RawAlert {
+        guard let render = self.renders.first(where: { $0.object is AlertRender<Payload> })?.object as? AlertRender<Payload> else {
+            return nil
+        }
+
+        return render
+    }
+
+    @usableFromInline
+    static let shared: AlertManager = .init()
 }

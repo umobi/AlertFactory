@@ -21,43 +21,47 @@
 //
 
 import Foundation
+import SwiftUI
+
+#if os(iOS) || os(tvOS)
 import UIKit
 
-extension UIAlertController: AlertFactoryType {    
-    
-    public func with(title: String) -> Self {
-        return .init(title: title, message: self.message, preferredStyle: self.preferredStyle)
+@usableFromInline
+internal struct PresentAlert: UIViewRepresentable {
+    @usableFromInline
+    typealias UIViewType = PresentAlertView
+
+    let isPresenting: Bool
+    let content: () -> AFAlertController
+    let onDismiss: () -> Void
+
+    @usableFromInline
+    init(isPresenting: Bool, onDismiss: @escaping () -> Void, content: @escaping () -> AFAlertController) {
+        self.isPresenting = isPresenting
+        self.onDismiss = onDismiss
+        self.content = content
     }
-    
-    public func with(text: String) -> Self {
-        return .init(title: self.title, message: text, preferredStyle: self.preferredStyle)
+
+    @usableFromInline
+    func makeUIView(context: Context) -> PresentAlertView {
+        PresentAlertView()
     }
-    
-    public func with(preferredStyle: UIAlertController.Style) -> Self {
-        return .init(title: self.title, message: self.message, preferredStyle: preferredStyle)
-    }
-    
-    public func append(textField: AlertFactoryField) -> Self {
-        self.addTextField(configurationHandler: {
-            textField.onTextField($0)
-        })
-        
-        return self
-    }
-    
-    public func append(button: AlertFactoryButton) -> Self {
-        let action = UIAlertAction(title: button.title, style: button.style, handler: { _ in
-            button.onTap?()
-        })
-        
-        self.addAction(action)
-        
-        if button.isPreferred {
-            if #available(iOS 9.0, *) {
-                self.preferredAction = action
+
+    @usableFromInline
+    func updateUIView(_ uiView: PresentAlertView, context: Context) {
+        if isPresenting {
+            let afView = self.content()
+
+            afView.dismissedHandler = {
+                self.onDismiss()
             }
+
+            uiView.present(afView)
+
+            return
         }
-        
-        return self
+
+        uiView.dismiss()
     }
 }
+#endif

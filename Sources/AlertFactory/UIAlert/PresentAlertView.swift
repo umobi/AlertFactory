@@ -21,31 +21,55 @@
 //
 
 import Foundation
+
+#if os(iOS) || os(tvOS)
 import UIKit
 
-public protocol AlertFactoryErrorType {
-    var error: Swift.Error { get }
-    init(_ error: Swift.Error)
-    
-    associatedtype Title
-    associatedtype Text
-    
-    var title: Title? { get }
-    var text: Text? { get }
-}
+@usableFromInline
+internal class PresentAlertView: UIView {
+    weak private var viewController: UIViewController?
 
-open class AlertFactoryError: AlertFactoryErrorType {
-    public var title: String? {
-        return nil
+    private var parent: UIViewController? {
+        sequence(
+            first: self as UIResponder,
+            next: { $0.next }
+        )
+        .first(where: { $0 is UIViewController }) as? UIViewController
     }
-    
-    public var text: String? {
-        return error.localizedDescription
+
+    private var readyToCommitHandler: (() -> Void)? = nil
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+
+        guard self.window != nil else {
+            return
+        }
+
+        self.readyToCommitHandler?()
+        self.readyToCommitHandler = nil
     }
-    
-    public let error: Swift.Error
-    
-    required public init(_ error: Swift.Error) {
-        self.error = error
+
+    func present(_ viewController: UIViewController) {
+        guard self.viewController == nil else {
+            return
+        }
+
+        guard let parent = self.parent else {
+            self.readyToCommitHandler = { [weak self] in
+                self?.present(viewController)
+            }
+
+            return
+        }
+
+        parent.present(viewController, animated: true, completion: nil)
+
+        self.viewController = viewController
+    }
+
+    func dismiss() {
+        self.viewController?.dismiss(animated: true, completion: nil)
     }
 }
+#endif

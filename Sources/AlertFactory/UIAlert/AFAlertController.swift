@@ -21,12 +21,44 @@
 //
 
 import Foundation
+
+#if os(iOS) || os(tvOS)
 import UIKit
 
-final public class AlertFactoryField {
-    public let onTextField: (UITextField) -> Void
-    
-    public init(onTextField: @escaping (UITextField) -> Void) {
-        self.onTextField = onTextField
+@usableFromInline
+internal class AFAlertController: UIAlertController {
+    var dismissedHandler: (() -> Void)? = nil
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if self.isBeingDismissed {
+            self.dismissedHandler?()
+        }
     }
 }
+
+extension AFAlertController {
+    @usableFromInline
+    static func make(title: String?,
+                     message: String?,
+                     style: UIAlertController.Style,
+                     actions: [(String, UIAlertAction.Style, () -> Void)]) -> AFAlertController {
+
+        let alertController = AFAlertController(title: title, message: message, preferredStyle: style)
+
+        actions.forEach { title, style, onTap in
+            alertController.addAction(.init(
+                title: title,
+                style: style,
+                handler: { [weak alertController] _ in
+                    print(alertController?.isBeingDismissed ?? "true")
+                    onTap()
+                }
+            ))
+        }
+
+        return alertController
+    }
+}
+#endif

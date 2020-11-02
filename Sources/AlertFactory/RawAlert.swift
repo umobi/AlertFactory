@@ -20,36 +20,36 @@
 // THE SOFTWARE.
 //
 
-import Foundation
-import UIKit
+import SwiftUI
 
-public protocol AlertFactoryPayloadType {
-    associatedtype Title
-    associatedtype Text
-    
-    var title: Title? { get set }
-    var text: Text? { get set }
-    var cancelButton: AlertFactoryButton? { get set }
-    var destructiveButton: AlertFactoryButton? { get set }
-    var otherButtons: [AlertFactoryButton] { get set }
-    var preferedStyle: UIAlertController.Style { get set }
-    
-    var inputTitles: [AlertFactoryField] { get set }
-    
-    // MARK: TB Configuration
-    var image: UIImage? { get set }
+public protocol RawAlert {
+    func render(_ isPresenting: Binding<Bool>) -> AnyView
 }
 
-public final class AlertFactoryPayload<Title, Text>: AlertFactoryPayloadType {
-    public var title: Title? = nil
-    public var text: Text? = nil
-    public var cancelButton: AlertFactoryButton?
-    public var destructiveButton: AlertFactoryButton?
-    public var otherButtons: [AlertFactoryButton] = []
-    public var preferedStyle: UIAlertController.Style = .alert
-    
-    public var inputTitles: [AlertFactoryField] = []
-    
-    // MARK: TB Configuration
-    public var image: UIImage?
+public extension RawAlert {
+    @inline(__always) @inlinable
+    func present(_ render: AlertRender<Self>) {
+        render.payload += [self]
+    }
+
+    @inlinable
+    func present() {
+        guard let render = AlertManager.shared.render(Self.self) else {
+            print("[Warning] couldn't restore AlertFactory<\(Self.self)> on AlertManager")
+            return
+        }
+
+        render.payload += [self]
+    }
+
+    @inlinable
+    static func shared() -> AlertRender<Self> {
+        if let render = AlertManager.shared.render(Self.self) {
+            return render
+        }
+        
+        let render = AlertRender<Self>()
+        AlertManager.shared.store(render)
+        return render
+    }
 }

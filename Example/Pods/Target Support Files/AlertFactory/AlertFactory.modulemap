@@ -1,6 +1,0 @@
-framework module AlertFactory {
-  umbrella header "AlertFactory-umbrella.h"
-
-  export *
-  module * { export * }
-}
