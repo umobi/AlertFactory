@@ -22,11 +22,11 @@
 
 import SwiftUI
 
-private struct AlertView<Payload, Content>: View where Payload: RawAlert, Content: View {
+private struct AlertView<Content>: View where Content: View {
     let content: () -> Content
-    @ObservedObject var state: AlertRender<Payload>
+    @ObservedObject var state: AlertRender
 
-    init(_ state: AlertRender<Payload>,_ content: @escaping () -> Content) {
+    init(_ state: AlertRender,_ content: @escaping () -> Content) {
         self.state = state
         self.content = content
     }
@@ -40,12 +40,12 @@ private struct AlertView<Payload, Content>: View where Payload: RawAlert, Conten
                 }
 
 
-                return AnyView(payload.render(self.$state.isPresenting))
+                return payload.render(self.$state.isPresenting)
             }())
     }
 }
 
-public class AlertRender<Payload>: ObservableObject where Payload: RawAlert {
+public class AlertRender: ObservableObject {
     public typealias Body = AnyView
 
     @inlinable
@@ -68,10 +68,10 @@ public class AlertRender<Payload>: ObservableObject where Payload: RawAlert {
         }
     }
 
-    internal var actualPayload: Payload?
+    internal var actualPayload: RawAlert?
 
     @usableFromInline
-    var payload: [Payload] = [] {
+    var payload: [RawAlert] = [] {
         didSet {
             self.lock()
         }
@@ -95,15 +95,11 @@ public class AlertRender<Payload>: ObservableObject where Payload: RawAlert {
             }
         }
     }
-
-    deinit {
-        AlertManager.shared.remove(self)
-    }
 }
 
 public extension View {
     @inline(__always)
-    func alertFactory<Payload: RawAlert>(_ state: AlertRender<Payload>) -> some View {
+    func alertFactory(_ state: AlertRender) -> some View {
         AlertView(state, { self })
     }
 }
