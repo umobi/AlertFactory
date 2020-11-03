@@ -31,4 +31,9 @@ public extension RawAlert {
     func present(_ render: AlertRender) {
         render.payload += [self]
     }
+
+    @inline(__always) @inlinable
+    func present() {
+        AlertRender.shared.payload += [self]
+    }
 }

@@ -33,14 +33,13 @@ private struct AlertView<Content>: View where Content: View {
 
     var body: some View {
         self.content()
-            .environmentObject(self.state)
+            .environmentObject(state)
             .background({ () -> AnyView in 
                 guard self.state.isPresenting, let payload = self.state.actualPayload else {
                     return AnyView(EmptyView())
                 }
 
-
-                return payload.render(self.$state.isPresenting)
+                return AnyView(payload.render(self.$state.isPresenting))
             }())
     }
 }
@@ -48,6 +47,9 @@ private struct AlertView<Content>: View where Content: View {
 public class AlertRender: ObservableObject {
     public typealias Body = AnyView
 
+    @usableFromInline
+    static let shared: AlertRender = .init()
+    
     @inlinable
     public init() {}
 
@@ -101,5 +103,10 @@ public extension View {
     @inline(__always)
     func alertFactory(_ state: AlertRender) -> some View {
         AlertView(state, { self })
+    }
+
+    @inline(__always)
+    func alertFactory() -> some View {
+        AlertView(.shared, { self })
     }
 }
