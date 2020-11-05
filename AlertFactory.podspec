@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AlertFactory'
-  s.version          = '2.0.0'
+  s.version          = '2.0.1'
   s.summary          = 'An declarative constructor for any AlertController'
 
   s.description      = <<-DESC

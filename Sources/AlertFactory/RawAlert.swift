@@ -28,28 +28,12 @@ public protocol RawAlert {
 
 public extension RawAlert {
     @inline(__always) @inlinable
-    func present(_ render: AlertRender<Self>) {
+    func present(_ render: AlertRender) {
         render.payload += [self]
     }
 
-    @inlinable
+    @inline(__always) @inlinable
     func present() {
-        guard let render = AlertManager.shared.render(Self.self) else {
-            print("[Warning] couldn't restore AlertFactory<\(Self.self)> on AlertManager")
-            return
-        }
-
-        render.payload += [self]
-    }
-
-    @inlinable
-    static func shared() -> AlertRender<Self> {
-        if let render = AlertManager.shared.render(Self.self) {
-            return render
-        }
-        
-        let render = AlertRender<Self>()
-        AlertManager.shared.store(render)
-        return render
+        AlertRender.shared.payload += [self]
     }
 }
