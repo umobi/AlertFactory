@@ -27,20 +27,18 @@ public struct SUIAlert: RawAlert {
     @usableFromInline
     typealias ButtonPayload = (TextContent, ButtonStyle, () -> Void)
 
-    private let title: TextContent?
-    private let message: TextContent?
-    private let buttons: [ButtonPayload]
+    @usableFromInline
+    var title: TextContent?
+
+    @usableFromInline
+    var message: TextContent?
+
+    private var buttons: [ButtonPayload]
 
     public init() {
         self.title = nil
         self.message = nil
         self.buttons = []
-    }
-
-    private init(_ original: SUIAlert, editable: Editable) {
-        self.title = editable.title
-        self.message = editable.message
-        self.buttons = editable.buttons.unique().sorted(by: { $0.1 < $1.1 })
     }
 
     @usableFromInline
@@ -50,29 +48,11 @@ public struct SUIAlert: RawAlert {
         }
     }
 
-    @usableFromInline
-    class Editable {
-        @usableFromInline
-        var title: TextContent?
-
-        @usableFromInline
-        var message: TextContent?
-
-        @usableFromInline
-        var buttons: [(TextContent, ButtonStyle, () -> Void)]
-
-        init(_ original: SUIAlert) {
-            self.title = original.title
-            self.message = original.message
-            self.buttons = original.buttons
-        }
-    }
-
     @inline(__always) @usableFromInline
-    func edit(_ edit: (Editable) -> Void) -> Self {
-        let editable = Editable(self)
-        edit(editable)
-        return .init(self, editable: editable)
+    func edit(_ edit: (inout Self) -> Void) -> Self {
+        var mutableSelf = self
+        edit(&mutableSelf)
+        return mutableSelf
     }
 
     private func makePrimaryButton(_ isPresenting: Binding<Bool>) -> Alert.Button {
@@ -152,16 +132,12 @@ public extension SUIAlert {
 
     @inlinable
     func title(_ title: String) -> Self {
-        self.edit {
-            $0.title = .string(title)
-        }
+        edit { $0.title = .string(title) }
     }
 
     @inlinable
     func title(_ text: Text) -> Self {
-        self.edit {
-            $0.title = .text(text)
-        }
+        edit { $0.title = .text(text) }
     }
 }
 
@@ -169,16 +145,12 @@ public extension SUIAlert {
 
     @inlinable
     func message(_ message: String) -> Self {
-        self.edit {
-            $0.message = .string(message)
-        }
+        edit { $0.message = .string(message) }
     }
 
     @inlinable
     func message(_ text: Text) -> Self {
-        self.edit {
-            $0.message = .text(text)
-        }
+        edit { $0.message = .text(text)}
     }
 }
 

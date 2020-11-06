@@ -32,16 +32,16 @@ public struct UIAlert: RawAlert {
     typealias ButtonPayload = (String, UIAlertAction.Style, () -> Void)
 
     @usableFromInline
-    let title: String?
+    var title: String?
     
     @usableFromInline
-    let message: String?
+    var message: String?
 
     @usableFromInline
-    let style: UIAlertController.Style
+    var style: UIAlertController.Style
 
     @usableFromInline
-    let buttons: [ButtonPayload]
+    var buttons: [ButtonPayload]
 
     public init() {
         self.title = nil
@@ -50,40 +50,11 @@ public struct UIAlert: RawAlert {
         self.buttons = []
     }
 
-    private init(_ original: UIAlert, editable: Editable) {
-        self.title = editable.title
-        self.message = editable.message
-        self.style = editable.style
-        self.buttons = editable.buttons.unique().sorted()
-    }
-
-    @usableFromInline
-    class Editable {
-        @usableFromInline
-        var title: String?
-
-        @usableFromInline
-        var message: String?
-
-        @usableFromInline
-        var style: UIAlertController.Style
-
-        @usableFromInline
-        var buttons: [(String, UIAlertAction.Style, () -> Void)]
-
-        init(_ original: UIAlert) {
-            self.title = original.title
-            self.message = original.message
-            self.style = original.style
-            self.buttons = original.buttons
-        }
-    }
-
     @inline(__always) @usableFromInline
-    func edit(_ edit: (Editable) -> Void) -> Self {
-        let editable = Editable(self)
-        edit(editable)
-        return .init(self, editable: editable)
+    func edit(_ edit: (inout Self) -> Void) -> Self {
+        var mutableSelf = self
+        edit(&mutableSelf)
+        return mutableSelf
     }
 
     @inlinable
@@ -117,19 +88,15 @@ public struct UIAlert: RawAlert {
 
 public extension UIAlert {
     @inlinable
-    func title(_ title: String) -> Self {
-        self.edit {
-            $0.title = title
-        }
+    func title(_ title: String?) -> Self {
+        edit { $0.title = title }
     }
 }
 
 public extension UIAlert {
     @inlinable
-    func message(_ message: String) -> Self {
-        self.edit {
-            $0.message = title
-        }
+    func message(_ message: String?) -> Self {
+        edit { $0.message = message }
     }
 }
 
@@ -186,9 +153,7 @@ public extension UIAlert {
 public extension UIAlert {
     @inlinable
     func style(_ style: UIAlertController.Style) -> Self {
-        self.edit {
-            $0.style = style
-        }
+        edit { $0.style = style }
     }
 }
 
